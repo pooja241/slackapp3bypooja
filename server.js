@@ -68,11 +68,10 @@ app.get("/", (request, response) => {
   console.log(Date.now() + " Ping Received");
   response.sendStatus(200);
 });
-  const listener = app.listen(process.env.PORT, function() {
-  setInterval(() => {
-  http.get(`https://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 280000);
-  
+  setInterval(function() {
+    http.get("https://sk-ps.herokuapp.com");
+},300000);
+app.listen(process.env.PORT);
   console.log("Your app is listening on port " + listener.address().port);
 });
    
