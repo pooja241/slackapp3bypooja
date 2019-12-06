@@ -69,7 +69,7 @@ app.get("/", (request, response) => {
   response.sendStatus(200);
 });
   setInterval(function() {
-    http.get("https://sk-ps.herokuapp.com");
+    http.get("https://newslackchannel.herokuapp.com");
 },300000);
 app.listen(process.env.PORT);
   console.log("Your app is listening on port " + listener.address().port);
