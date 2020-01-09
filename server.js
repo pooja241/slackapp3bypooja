@@ -13,11 +13,10 @@ const Workspace=process.env.Workspace;
 app.use(express.static("public"));
 app.use(bodyparser.json());
 
-app.post('/', (req, res) => {
-  
+app.post('/', (req, res) => {    //To recieve request from apex trigger  
 console.log('welcome',res);
 let cname=req.body.Account.Name;
-  let naming =cname.toLowerCase();
+  let naming =cname.toLowerCase();  //Changing the account name according to slack naming convention
   console.log('naming',naming);
   let finalname=naming.replace(/\s/g,'');
 let secfinal=finalname.replace(/,/g,'_');
@@ -49,6 +48,7 @@ let secfinal=finalname.replace(/,/g,'_');
          "name":'req.body.Account.Name'
      
   };
+  // Http req for channel creation & post in that channel
   http.get('https://slack.com/api/channels.create?token='+'xoxp-701650376675-701650377683-835791408581-cf0f1607d1353e00063de5b0320686ea'+'&name='+secfinal,(response)=>{
      http.get('https://slack.com/api/chat.postMessage?token='+'xoxp-701650376675-701650377683-835791408581-cf0f1607d1353e00063de5b0320686ea'+'&channel='+secfinal+'&text='+'the case is created and updated:\n'+
              'casenumber:'+req.body.CaseNumber+'\n'+'subject:'+req.body.Subject+'\n'+'Description:'+req.body.Description+'\n'+'Status:'+req.body.Status+'\n'+'Account:'+cname
